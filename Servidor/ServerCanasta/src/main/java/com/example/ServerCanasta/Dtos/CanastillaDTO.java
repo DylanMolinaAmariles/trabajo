@@ -11,4 +11,5 @@ public class CanastillaDTO {
 	private String nombrePadres;
 	private String fechaSolicitud;
 	private Double precio;
+	private boolean revisada;
 }
