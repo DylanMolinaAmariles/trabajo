@@ -39,7 +39,7 @@ public class ServicesPickingItemImpl implements IServicesPickingItem {
 	 * CanastillaProducida asociada, y transforma ambos en un DTO preparado para
 	 * exportar o generar XML.
 	 *
-	 * @return una lista de  PickingItemDTO con todos los artículos y sus canastillas.
+	 * una lista de  PickingItemDTO con todos los artículos y sus canastillas.
 	 */
 	
 	 public List<PickingItemDTO> generarPickingExport() {
@@ -54,7 +54,7 @@ public class ServicesPickingItemImpl implements IServicesPickingItem {
 	        return composiciones.stream().map(c -> {
 	          PickingItemDTO dto = new PickingItemDTO();
 	        		 dto.setIdCanastillaProducida(c.getCanastillaProducida().getId());
-	        		 dto.serCodigoCanastilla(c.getCanastillaProducida().getCodigo());
+	        		 dto.setCodigoCanastilla(c.getCanastillaProducida().getCodigo());
 	        		 dto.setDescripcionCanastilla(c.getCanastillaProducida().getDescripcion());
 	        		 dto.setCodigoArticulo(c.getArticuloCodigo());
 	        		 dto.setDescripcionArticulo(c.getArticuloDescripcion());

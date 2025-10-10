@@ -1,6 +1,5 @@
 package com.example.ServerCanasta.Services;
 
-
 import java.io.File;
 import java.time.LocalDateTime;
 
@@ -35,21 +34,21 @@ public class ServicesImportacionImpl implements IServicesImportacion{
 		// Obtenemos la fecha más nueva del XML (ejemplo: la fecha de la primera canastilla)
 		
 		LocalDateTime fechaNueva = wrapper.getCanastillas() !=null &&
-				!wrapper.getCanastilla().isEmpty() ? wrapper.getCanastilla()
+				!wrapper.getCanastillas().isEmpty() ? wrapper.getCanastillas()
 						.get(0).getFechaSolicitud(): null;
 		 
 		if(fechaNueva !=null) {
 			
 			// Borra solo lo que esta revisado y es anterior a la fecha actual
-			composicionProducidaDAO.deleteByRevisadoTrueAndCanastilaProducida_FechaSolicitudBefore(fechaNueva.toLocalDate().atStartOfDay());
+			composicionProducidaDAO.deleteByRevisadoTrueAndCanastillaProducida_FechaSolicitudBefore(fechaNueva.toLocalDate().atStartOfDay());
 		}
 		
 		
-		if(wrapper.getCanastillas !=null) {
+		if(wrapper.getCanastillas() !=null) {
 			canastillaProducidaDAO.saveAll(wrapper.getCanastillas());
 		}
 		
-		if(wrapper.getComposiciones !=null) {
+		if(wrapper.getComposiciones() !=null) {
 			composicionProducidaDAO.saveAll(wrapper.getComposiciones());
 		}
 	
@@ -80,6 +79,5 @@ public class ServicesImportacionImpl implements IServicesImportacion{
 		ImportacionWrapper wrapper = leerXml(xmlFile);
         importar(wrapper);
 	}
-
 
 }

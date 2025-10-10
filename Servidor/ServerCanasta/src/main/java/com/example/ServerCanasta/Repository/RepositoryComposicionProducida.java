@@ -33,5 +33,19 @@ public interface RepositoryComposicionProducida extends CrudRepository <Composic
      * Elimina las composiciones que ya fueron revisadas
      * y cuya fecha de canastilla es anterior a la indicada.
      */
-	void deleteByRevisadoTrueAndCanastilaProducida_FechaSolicitudBefore(LocalDateTime fecha);
+	void deleteByRevisadoTrueAndCanastillaProducida_FechaSolicitudBefore(LocalDateTime fecha);
+	
+	/**
+	 * Comprueba si una canastilla tiene todas la composiciones marcadas como revisadas.
+	 * Devuelve true si no hay una composicion por revisar
+	 */
+	
+	@Query("""
+			SELECT CASE WHEN COUNT(c) = 0 THEN TRUE ELSE FALSE END
+        FROM ComposicionProducida c
+        WHERE c.canastillaProducida.id = :idCanastilla
+        AND (c.revisado = false OR c.revisado IS NULL)
+			""")
+	
+	boolean estaTotalmenteRevisada(Integer idcanastilla);
 }

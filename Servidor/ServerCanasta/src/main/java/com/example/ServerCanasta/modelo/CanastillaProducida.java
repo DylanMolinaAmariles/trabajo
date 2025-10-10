@@ -17,10 +17,11 @@ import lombok.NoArgsConstructor;
 
 
 @XmlRootElement(name = "CANASTILLAS_PRODUCIDAS")
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
-//@Data
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
@@ -62,104 +63,6 @@ public class CanastillaProducida {
      */
 	@OneToMany
 	@JoinColumn(name = "composicion_id")
-	private List<ComposicionProducida> CompocicionesProducidas;
+	private List<ComposicionProducida> compocicionesProducidas;
 	
-	
-	 // ================================
-    // Constructores
-    // ================================
-    public CanastillaProducida() {}
-
-    public CanastillaProducida(Integer id, String codigo, String descripcion, String nombrePadres,
-                               LocalDateTime fechaSolicitud, String observaciones, Double precio) {
-        this.id = id;
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.nombrePadres = nombrePadres;
-        this.fechaSolicitud = fechaSolicitud;
-        this.observaciones = observaciones;
-        this.precio = precio;
-    }
-
-    // ================================
-    // Getters y Setters
-    // ================================
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getNombrePadres() {
-        return nombrePadres;
-    }
-
-    public void setNombrePadres(String nombrePadres) {
-        this.nombrePadres = nombrePadres;
-    }
-
-    public LocalDateTime getFechaSolicitud() {
-        return fechaSolicitud;
-    }
-
-    public void setFechaSolicitud(LocalDateTime fechaSolicitud) {
-        this.fechaSolicitud = fechaSolicitud;
-    }
-
-    public String getObservaciones() {
-        return observaciones;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    public List<ComposicionProducida> getComposiciones() {
-        return CompocicionesProducidas;
-    }
-
-    public void setComposiciones(List<ComposicionProducida> composiciones) {
-        this.CompocicionesProducidas = composiciones;
-    }
-
-    // ================================
-    // Métodos utilitarios
-    // ================================
-    public void addComposicion(ComposicionProducida composicion) {
-    	CompocicionesProducidas.add(composicion);
-        composicion.setCanastillaProducida(this); // asegurar consistencia bidireccional
-    }
-
-    public void removeComposicion(ComposicionProducida composicion) {
-    	CompocicionesProducidas.remove(composicion);
-        composicion.setCanastillaProducida(null);
-    }
-	
-
 }

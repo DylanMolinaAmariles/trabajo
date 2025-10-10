@@ -1,14 +1,19 @@
 package com.example.ServerCanasta.Services;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ServerCanasta.Dtos.CanastillaDTO;
 import com.example.ServerCanasta.Dtos.ComposicionDTO;
+import com.example.ServerCanasta.Repository.RepositoryCanastillaProducida;
 import com.example.ServerCanasta.Repository.RepositoryComposicionProducida;
 import com.example.ServerCanasta.config.DtoConverter;
+import com.example.ServerCanasta.modelo.CanastillaProducida;
 import com.example.ServerCanasta.modelo.ComposicionProducida;
 
 @Service
@@ -19,6 +24,8 @@ public class ServicesComposicionProducidaImpl implements IServicesComposicionPro
 	 */
 	@Autowired
 	private RepositoryComposicionProducida composicionProducidaDAO;
+	
+	
 	
 	/*
 	 * Inyección del convertidor para mapear Entidades <-> DTOs
@@ -39,7 +46,7 @@ public class ServicesComposicionProducidaImpl implements IServicesComposicionPro
 	 * Devuelve todas las composiciones que pertenecen a una canastilla.
 	 */
 	@Override
-	public List<ComposicionDTO> listaromposicionesPorCanastilla(Integer idCanastilla) {
+	public List<ComposicionDTO> listarComposicionesPorCanastilla(Integer idCanastilla) {
 		List<ComposicionProducida> entidades = composicionProducidaDAO.findByCanastillaProducida_Id(idCanastilla);
 		return dtoConverter.mapAll(entidades, ComposicionDTO.class);
 	}
@@ -61,4 +68,6 @@ public class ServicesComposicionProducidaImpl implements IServicesComposicionPro
 
 		return null;
 	}
+	
+	
 }

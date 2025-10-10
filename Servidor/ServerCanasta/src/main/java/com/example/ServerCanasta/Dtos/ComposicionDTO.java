@@ -1,4 +1,4 @@
-package com.example.ServerCanasta.Dtos;
+ package com.example.ServerCanasta.Dtos;
 
 import lombok.Data;
 
